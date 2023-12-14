@@ -1,0 +1,80 @@
+public class Cau2 {
+    //Cau 1
+    public static void printBinary(int n) {
+        if (n > 0) {
+            printBinary(n / 2);
+            System.out.print(n % 2);
+        }
+    }
+    //Cau 2
+    public static int reverseInteger(int n) {
+        if (n < 10) {
+            return n;
+        }
+        int lastDigit = n % 10;
+        int remainingDigits = n / 10;
+        int reversedNumber = reverseInteger(remainingDigits);
+        int numDigits = (int) Math.log10(remainingDigits) + 1;
+        return lastDigit * (int) Math.pow(10, numDigits) + reversedNumber;
+    }
+    //Cau 3
+    public static int countOccurrences(String str, char c) {
+        if (str.length() == 0) {
+            return 0;
+        }
+        if (str.charAt(0) == c) {
+            return 1 + countOccurrences(str.substring(1), c);
+        } else {
+            return countOccurrences(str.substring(1), c);
+        }
+    }
+    //Cau 4
+    public static String decimalToHex(int n) {
+        if (n < 16) {
+            return Integer.toHexString(n).toUpperCase();
+        } else {
+            int remainder = n % 16;
+            int quotient = n / 16;
+            return decimalToHex(quotient) + Integer.toHexString(remainder).toUpperCase();
+        }
+    }
+    //Cau 5
+    public static void printItems(int[] arr, int index) {
+        if (index < arr.length) {
+            System.out.println(arr[index]);
+            printItems(arr, 2 * index + 1);
+            printItems(arr, 2 * index + 2);
+        }
+    }
+    //Cau 6
+    public static void printEvenDigits(int n) {
+        if (n > 0) {
+            int lastDigit = n % 10;
+            if (lastDigit % 2 == 0) {
+                System.out.print(lastDigit + " ");
+            }
+            printEvenDigits(n / 10);
+        }
+    }
+    public static void main(String[] args) {
+        int number = 10;
+        System.out.print("Binary form of " + number + ": ");
+        printBinary(number);
+        int number1 = 12345;
+        int reversedNumber = reverseInteger(number1);
+        System.out.println("Reversed number: " + reversedNumber);
+        String str = "Hello, World!";
+        char c = 'o';
+        int occurrences = countOccurrences(str, c);
+        System.out.println("Number of occurrences of '" + c + "': " + occurrences);
+        int decimalNumber = 255;
+        String hexadecimalNumber = decimalToHex(decimalNumber);
+        System.out.println("Hexadecimal form of " + decimalNumber + ": " + hexadecimalNumber);
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        System.out.println("Items at the specified indices:");
+        printItems(arr, 1);
+        int number2 = 123456;
+        System.out.print("Even digits of " + number2 + ": ");
+        printEvenDigits(number2);
+    }
+}
