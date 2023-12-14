@@ -1,4 +1,55 @@
-void sort(int arr[])
+public class Cau1{
+    static void print(int arr[])
+    {
+        int n = arr.length;
+        for (int i = 0; i < n; ++i)
+            System.out.print(arr[i] + " ");
+ 
+        System.out.println();
+    }
+
+    public static int[] BtoU_Ascend(int[] arr) {
+        int n = arr.length;
+        boolean swapped;
+        for (int i = 0; i < n - 1; i++) {
+            swapped = false;
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] >= arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    print(arr);
+                    swapped = true;
+                }
+            }
+            if (!swapped) {
+                break;
+            }
+        }
+        return arr;
+    }
+
+    public static int[] BtoU_Descend(int[] arr) {
+        int n = arr.length;
+        boolean swapped;
+        for (int i = 0; i < n - 1; i++) {
+            swapped = false;
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] <= arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    print(arr);
+                    swapped = true;
+                }
+            }
+            if (!swapped) {
+                break;
+            }
+        }
+        return arr;
+    }
+    void selectionSort(int arr[])
     {
         int n = arr.length;
  
@@ -18,3 +69,21 @@ void sort(int arr[])
             arr[i] = temp;
         }
     }
+    void insertionSort(int arr[])
+    {
+        int n = arr.length;
+        for (int i = 1; i < n; ++i) {
+            int key = arr[i];
+            int j = i - 1;
+ 
+            /* Move elements of arr[0..i-1], that are
+               greater than key, to one position ahead
+               of their current position */
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j = j - 1;
+            }
+            arr[j + 1] = key;
+        }
+    }
+}
