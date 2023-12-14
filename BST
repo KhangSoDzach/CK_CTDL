@@ -1,0 +1,73 @@
+public class TreeNode{
+    int key;
+    TreeNode left;
+    TreeNode right;
+    
+    // Other constructors and methods
+    
+    public int countLeaves() {
+        if (left == null && right == null) {
+            // Leaf node
+            return 1;
+        }
+        
+        int count = 0;
+        
+        if (left != null) {
+            count += left.countLeaves();
+        }
+        
+        if (right != null) {
+            count += right.countLeaves();
+        }
+        
+        return count;
+    }
+    public int subtreeSize() {
+        int size = 1; // Counting the current node
+        
+        if (left != null) {
+            size += left.subtreeSize();
+        }
+        
+        if (right != null) {
+            size += right.subtreeSize();
+        }
+        
+        return size;
+    }
+    public int sumInRange(int a, int b) {
+        int sum = 0;
+        
+        if (key >= a && key <= b) {
+            sum += key;
+        }
+        
+        if (left != null) {
+            sum += left.sumInRange(a, b);
+        }
+        
+        if (right != null) {
+            sum += right.sumInRange(a, b);
+        }
+        
+        return sum;
+    }
+    public int countNodesWithOneChild() {
+        int count = 0;
+        
+        if ((left != null && right == null) || (left == null && right != null)) {
+            count++;
+        }
+        
+        if (left != null) {
+            count += left.countNodesWithOneChild();
+        }
+        
+        if (right != null) {
+            count += right.countNodesWithOneChild();
+        }
+        
+        return count;
+    }
+}
